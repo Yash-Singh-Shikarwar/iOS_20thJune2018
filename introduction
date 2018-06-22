@@ -1,0 +1,91 @@
+//new file to start GitHub usage
+let HeteroArray : [Any] = [1, true, "NewString", ["key":9]]
+//HeteroArray.append("good morning")
+//can't append because of let
+
+//print(HeteroArray)
+
+//an empty array
+let oneMoreArray = [Int]()
+//print(oneMoreArray)
+
+//Tuple array empty
+let TupleArray = [(Int, Int, Int)]()
+
+//array of dictionaries
+let DictionaryArray = [[String:Any]]()
+
+//angled bracket notation
+let arr4 = Array<Int>()
+let arr5 = Array<Float>()
+
+var arr6 = Array<Int>()
+arr6.append(2)
+print(arr6)
+arr6.append(7)
+print(arr6)
+arr6.remove(at:0)
+print(arr6)
+
+print(arr6.count)
+
+//Repeating array
+let repeatArr = Array(repeating: "Bubba bom", count: 5)
+print(repeatArr)
+
+
+
+//Dictionary
+let dict = ["keyname" : "Yuvraj", "keyHobby" : "Football"]
+let name = dict["keyname"]
+let hobby = dict["keyHobby"]
+
+print(name)  
+//output= Optional("Yuvraj") because optional => we will either get a value or not (depending on whehter the key exists or not)
+
+//nil coalescing operator
+print(name ?? "John") //if name returned NULL, then it would print John, similar case for hobby
+print(hobby ?? "Music")
+
+
+//more on Optional
+var anOpt : Int?
+print(anOpt)
+
+anOpt = 5
+print(anOpt)  
+//let finalOutput = 2 + anOpt  //doesn't work-> we need to unwrap it
+
+if(anOpt != nil)
+{
+    let finalOutput = 2 + anOpt! //! => force unwrap operator
+    print(finalOutput)
+}
+else
+{
+    print("It is nil")
+    
+}
+//another example- nil coalescing for unwrapping
+var anOpt2 = 2.0
+let value = anOpt2 ?? 0.0 // unwrapping with ??
+
+
+//another example- if let to implement unwrapping 
+var stringOpt : String? = "Yash"
+if let unwrapValue = stringOpt
+{
+    let greeting = "Good morning " + unwrapValue
+    print(greeting)
+}
+else
+{
+    print("stringOpt is nil")
+}
+
+func getValueGuardLet()
+{
+    let aOptional : Int? = 50
+    guard let unacceptableValue = aOptional else {return}
+    let x = 10 + unacceptableValue
+}
