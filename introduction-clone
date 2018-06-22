@@ -15,7 +15,7 @@ let TupleArray = [(Int, Int, Int)]()
 let DictionaryArray = [[String:Any]]()
 
 //angled bracket notation
-let arr4 = Array<Int>()
+let arr4 : [Int]
 let arr5 = Array<Float>()
 
 var arr6 = Array<Int>()
