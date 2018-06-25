@@ -1,0 +1,313 @@
+//PROTOCOL PART INCOMPLETE REMEMBER TO DOWNLOAD THE NOTES AND SEE THAT IT'S COMPLETE HERE
+
+let arr = [1,2,3]
+
+for (item, index) in arr.enumerated()
+{
+    print("Item \(item) and index is \(index)")
+}
+
+/* output for the above code
+
+Item 0 and index is 1
+Item 1 and index is 2
+Item 2 and index is 3
+
+*/
+
+//------------------------------------------------------------------------------
+//Tuple way
+func foo() -> (MyType, Int, String)
+{
+    //...
+    return(MyType.B, 50, "Part")     //use MyType.B instead of .B for enhanced readability
+}
+//calling the function
+let (type, amount, desc) = foo()
+print("Type is >> \(type)")
+print("Amount is >> \(amount)")                       //no typecasting needed for tuples
+print("Description is >> \(desc)")
+
+//using the array way
+func foo1() -> [Any]
+{
+    //..
+    return[MyType.B, 50, "ArrayWay"]    // square brackets for ArrayWay
+}
+
+let result1 = foo1()
+let type1 = result1[0] as! MyType
+let amount1 = result1[1] as! Int
+let desc1 = result1[2] as! String           //typecasting needed for arrays
+
+print(type1)
+print(amount1)
+print(desc1)
+//-----------------------------------------------------------------------------------
+
+//Switch for unwrapping
+func unwrapUsingSwitch()
+{
+    let x : String? = "Yash"
+    switch x
+    {
+        case Optional.some(let value):
+            print("Value: \(value)")
+        case Optional.some(let value2):
+            print("Value: \(value2)")
+        case Optional.none:
+            print("Nothing stored inside enum or nil value found")
+    }
+}
+//------------------------------------------------------------------------------------
+//Optional chaining
+class Person{
+  var address : Adddress? = Adddress()   //initialising address to the default value provided by Adddress
+    //otherwise we will have nil assigned to address
+    
+    
+}
+
+class Adddress{
+  
+  var street : String? = "16F Shimao Riviera Garden, Pudong, Shanghai, 20122"
+}
+
+let p : Person? = Person()
+//if let method reconstruct here
+//To access address, we can use multiple nested if lets as follows-
+/*if let unwrap1 = p
+{
+    let addressM = unwrap1.address
+    
+    if let unwrap2 = addressM
+    {
+        let streetM = unwrap2.street
+        if let unwrap3 = streetM
+        {
+            print("Street is finally reached at: 16065 Red Coach Lane, Whittier, CA, 90604")
+        }
+        else
+        {
+            print("street is nil")
+        }
+    }
+    else
+    {
+        print("address is nil")
+    }
+}
+else
+{
+    print("person is nil")
+}
+*/
+
+
+//optional chaining part
+/*let street = p?.address?.street
+if let unwrapStreet = street
+{
+    print(unwrapStreet)
+}
+else
+{
+    print("nil")
+}*/
+
+/*dangerous method to do, but accurate-> 
+
+let street = p!.address!.street
+
+*/
+//------------------------------------------------------------------------------
+//Classes and structures basics
+
+class Adddress{
+  
+  var street : String? = "16F Shimao Riviera Garden, Pudong, Shanghai, 20122"
+}
+
+let p : Person? = Person()
+//if let method reconstruct here
+//To access address, we can use multiple nested if lets as follows-
+/*if let unwrap1 = p
+{
+    let addressM = unwrap1.address
+    
+    if let unwrap2 = addressM
+    {
+        let streetM = unwrap2.street
+        if let unwrap3 = streetM
+        {
+            print("Street is finally reached at: 16065 Red Coach Lane, Whittier, CA, 90604")
+        }
+        else
+        {
+            print("street is nil")
+        }
+    }
+    else
+    {
+        print("address is nil")
+    }
+}
+else
+{
+    print("person is nil")
+}
+*/
+
+
+//optional chaining part
+/*let street = p?.address?.street
+if let unwrapStreet = street
+{
+    print(unwrapStreet)
+}
+else
+{
+    print("nil")
+}*/
+
+/*dangerous method to do, but accurate-> 
+
+let street = p!.address!.street
+
+*/
+
+import Foundation
+import UIKit
+class Employee
+{
+    //stored properties
+    var employeeName : String?
+    
+    //designated initialiser
+    init(employeeName : String)     
+    {
+        self.employeeName = employeeName
+        
+        /*or another way to write the above code is:
+        init(mEmpoyeeName : String)
+        {
+            employeeName = mEmployeeName
+        }
+        */
+    }
+    
+    deinit
+    {
+        print("called upon whenever ARC has to release memory for this instance")
+        
+    /* 
+    ARC will release your memory and call back will give you indication that it has been deployed by calling deinit
+    1.You HAVE TO remove your observers here
+    2. In case your class is using timers, we must invalidate here in dealloc
+    */
+        
+    }
+    
+    
+}
+
+func classExample()
+{
+    let employee = Employee.init(employeeName:"Yash")
+    let employee1 = Employee.init(employeeName:"Yuvraj")
+    
+    let emp2 = employee1
+    emp2.employeeName = "Aegon VI"
+    print("emp2 employee name is >> \(emp2.employeeName) and employee1 name is >> \(employee1.employeeName)")
+    
+    /*
+    output will be emp2 employeeName is Aegon VI and employee1 name is Aegon VI
+    because classes pass values by reference so change to 1 of them will cause the change to all the instances of the same class
+    */
+    
+    /*
+    let employee3 : Employee? = Employee.init(employeeName : "Jack")
+    employee?.employeeName = nil
+    employee = nil     //deinit will be called here automatically by ARC, never have to call employee3.deinit
+    */
+    
+    
+}
+
+//structures example
+struct EmployeeStruct
+{
+    var employeeName : String?
+    
+    mutating func setEmployeeName(param : String)    //have to use mutating keyword since struct is self immutable data type
+    {
+        employeeName = param
+    }
+}
+
+func structExample()
+{
+    var Employee = EmployeeStruct(employeeName : "Ramsay") //memberwise initialisation
+    var Employee1 = Employee
+    //copy on write - slight twist on pass by value and pass by reference
+    //at this point the new memory for Employee1 has not been created
+    
+    Employee1. employeeName = "Roose"   //this is where new memory is generated
+    //copy on write--> create memory only when something is written
+    
+    print("Employee's name is \(Employee.employeeName) and Employee1's name is \(Employee1.employeeName)")
+    
+    /*
+    output will show Employee's name is Ramsay and Employee1's name is Roose
+    because structs use pass by value not pass by reference kind of principle
+    so change in 1 struct should have no bearing on changes in another struct
+    even if it was previously assigned to it (deep copy)
+    */
+}
+
+//Structs take part in POP, a small example below, connected to the struct above
+protocol EmployeeProtocol
+{
+    func shouldHavePerformanceReview()
+}
+
+//subscript
+
+class daysoftheweek
+{
+    var days = ["Sunday", "Moday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+subscript(index: Int) -> String
+{
+    //getter is required, setter is optional but recommended
+    get
+    {
+        return days[index]
+    }
+    
+    set (someValue)
+    {
+        self.days[index] = someValue
+    }
+    
+}
+/*
+func setValueAtIndex(sub : Int, value : String)
+{
+    days[sub] = value
+}
+func getValueAtIndex
+*/
+}
+
+
+let obj = daysoftheweek
+print(obj[0])    //prints Sunday
+
+
+
+
+
+
+
+
+
