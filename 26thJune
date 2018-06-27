@@ -1,0 +1,179 @@
+////
+////  26thJuneClassNotes.swift
+////  ClassNotes
+////
+////  Created by Yash Singh on 6/26/18.
+////  Copyright © 2018 Yash Singh. All rights reserved.
+////
+//
+//import Foundation
+//import UIKit
+//
+//class Square
+//{
+//    //stored property
+//    var length : Float?
+//    var width : Float?
+//
+//    //computed property
+//    var area: Float {
+//        get {
+//            print("Width is >> \(width!)")
+//            print("Length is >> \(length!)")
+//            return (width! * length!)
+//        }
+//        set(z) {     //even if we remove z from the arguments of set it will still work
+//            length = z/2
+//            width = z/2
+//        }
+//    }
+//
+//
+//func computedPropertyExample()
+//{
+//    let squareObj = Square()
+//    squareObj.length = 10
+//    squareObj.width = 10
+//
+//    //obtain area
+//    let area = squareObj.area
+//    print("Area is \(area)")
+//
+//    //now, let's deal with an example where we are given the area and we get the value of width and height
+//    squareObj.area = 1000
+//
+//    let breadth = squareObj.width
+//    let height = squareObj.length
+//
+//    print("Length is >> \(height!)")
+//    print("Width is >>\(breadth!)")
+//
+//}
+//}
+///*
+//struct Student
+//{
+//    //2 stored properties and 1 computed property
+//
+//    //stored properties
+//    var StudentScore : Int?
+//    var StudentSubjectNum : Int?
+//
+//    var FirstName : String?
+//    var LastName : String?
+//
+//    //computed property
+//    var GPA: Int {  //tried using Float but error: can't return Int to Float
+//        get {
+//            return StudentScore!/StudentSubjectNum!
+//        }
+//        set(newValue) {
+//            StudentScore = newValue
+//        }
+//    }
+//
+//    var FullName: String {
+//        get {
+//            return FirstName! + LastName!
+//        }
+//        set(newValue) {
+//            FirstName = newValue
+//            LastName = newValue
+//        }
+//    }
+//}
+//
+//func StructComputeGPA()
+//{
+//    let pupil = Student()
+//    pupil.StudentScore = 666
+//    pupil.StudentSubjectNum = 14
+//
+//    //obtain GPA
+//    let gradePtAvg = pupil.GPA
+//    print("GPA of the student is \(gradePtAvg)")
+//
+//}
+//
+//func StructDisplayName()
+//{
+//    var stu = Student()         //have to use var with struct because it's a value type not a reference type so to make changes to Student we have to use var
+//    stu.FirstName = "Gregor"
+//    stu.LastName = "Clegane"
+//
+//    let FinalName = stu.FullName
+//    print("Final name is \(FinalName)")
+//
+//}
+//*/
+////Enums
+//enum Language
+//{
+//    case Swift
+//    case ObjectiveC
+//}
+//
+//func enumSimpleExample()
+//{
+//    let aLang = Language.Swift
+//
+//    if aLang == Language.Swift
+//    {
+//        print("language is Swift")
+//    }
+//    else
+//    {
+//        print("language is Objective C")
+//    }
+//
+//
+//    let bLang = Language.ObjectiveC
+//
+//    switch bLang
+//    {
+//        case .ObjectiveC:
+//            print("Objective C")
+//        case .Swift:
+//            print("Swift")
+//        default:
+//            print("Invalid input")
+//    }
+//
+//}
+//
+//enum WithdrawalResult
+//{
+//    case Success
+//    case Fail
+//}
+//
+//struct bankAccount
+//{
+//    var cash = 100
+//    mutating func withdraw(amount: Int) -> WithdrawalResult
+//    {
+//       // var amount
+//        if amount<=cash
+//        {
+//            cash = cash - amount
+//            return .Success
+//        }
+//        else
+//        {
+//            return .Fail
+//        }
+//
+//    }
+//
+//}
+//
+//var bankAccountObj = bankAccount()
+//var result = bankAccountObj.withdraw(amount: 99)
+//
+//if result == WithdrawalResult.Success
+//{
+//    print("Successful withdrawal")
+//}
+//else{
+//    print("Unsuccessful withdrawal")
+//}
