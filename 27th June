@@ -1,0 +1,120 @@
+//
+//  ViewController.swift
+//  ClassNotes
+//
+//  Created by Yash Singh on 6/26/18.
+//  Copyright © 2018 Yash Singh. All rights reserved.
+//
+
+import UIKit
+
+class ViewController: UIViewController {
+                    /*This controls the number of UI views
+                        we use class here because it's better with a large dataset*/
+    
+    //UIBUTTON EXAMPLES
+    @IBOutlet weak var NewButton: UIButton!
+    //@IBOutlet var petName : UILabel!
+    //petName.text  exists, expects String?
+    @IBAction func Button2(_ sender: UIButton) {
+    }
+    //CREATE A UILABEL PROGRAMMATICALLY
+    //From StackOverflow
+    func createLabelProgrammatically()
+        //no need for @IBOutlet or @IBAction
+    {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200/*view.frame.size.width => to get the length of the width*/, height: 21))   //UILabel takes struct CGRect object as input
+        label.center = CGPoint(x: 160, y: 285)
+        label.textAlignment = .center   //title is at the centre of the label
+        label.backgroundColor = UIColor.yellow
+        label.text = "Iaiam abellenda"
+        self.view.addSubview(label)   //to add the label to the screen for viewing
+        
+    }
+    
+    
+    func createButtonProgrammatically()
+    {
+        //no need for @IBOutlet or @IBAction
+        let button = UIButton(type: UIButtonType.system) as UIButton
+        
+        let xPostion:CGFloat = 50
+        let yPostion:CGFloat = 200
+        let buttonWidth:CGFloat = 150
+        let buttonHeight:CGFloat = 45
+        
+        button.frame = CGRect(x:xPostion, y:yPostion, width:buttonWidth, height:buttonHeight)
+        
+        button.backgroundColor = UIColor.lightGray
+        button.setTitle("Tap me", for: UIControlState.normal)
+        button.setTitle("Tap me highlighted", for: UIControlState.highlighted)
+        button.tintColor = UIColor.black
+        //@IBAction equivalent in code
+        button.addTarget(self, action: #selector(buttonAction(_:))/*only 1 parameter possible*/, for: .touchUpInside)
+        
+        self.view.addSubview(button)
+    }
+    
+    @objc func buttonAction(_ sender: UIButton!)
+    {
+        //sender.setTitleColor(UIColor.black, for: UIControlState.normal)
+        print("Button tapped")
+    }
+    
+    override func viewDidLoad() {
+                    /*wherever you want to override this method, use the statement below ie
+                        super.viewDidLoad()
+         
+                    Use viewDidLoad in the case where we want to
+                    have some code that is executed only once*/
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        view.backgroundColor = UIColor.red   //don't need the instance of UIColor, simply call it
+        
+        createLabelProgrammatically()
+        //createButtonProgrammatically
+        
+        
+        
+        
+    }
+    /*Additional functions similar to viewDidLoad*/
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        /*
+         write code that you want to execute again when you return to this part
+         eg- print("call every time")
+         */
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        /*
+         when user has finally reached your screen, then you
+         want to show something, should be mentioned here
+         eg- we show the user that the app has the main screen now using pop ups
+         NewButton.backgroundColor = UIColor.brown
+         
+         last method of the life cycle so no more animations etc
+         may be used
+         */
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+
+}
+
