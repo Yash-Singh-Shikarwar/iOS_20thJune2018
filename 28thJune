@@ -1,0 +1,227 @@
+//
+//  ViewController.swift
+//  DemoStoryBoard
+//
+//  Created by Yash Singh on 6/28/18.
+//  Copyright © 2018 Yash Singh. All rights reserved.
+//
+
+import UIKit
+
+class ViewController: UIViewController {
+
+    @IBOutlet weak var newImage: UIImageView!
+    //@IBOutlet weak var lb1text
+    /*
+     var counter = 0
+     */
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //lbtext1.text = "Hi"     lbtext1 is the name of the new label Lokesh created with drag and drop. We are not saying the text of the button is lbtext1, that is defined as "Hi" as per this statement.
+        // Do any additional setup after loading the view, typically from a nib.
+        createLabel()
+        //creating the image object
+        newImage.image = UIImage(named: "Hollywood7")
+        
+        //assignment is to change the image from Hollywood7 to Disneyland3 when pressing the button
+        //new assignment, just like above but imagine an array of images which need to be displayed every time the button is pressed
+    }
+    
+    /*@IBAction func Button1(_ sender: UIButton) {
+     /*this is the button action function
+     change the image in this function......... self Assignment 2- Have an array of images that change every time the button is pressed.. Ying has done it*/
+     
+     //newImage.image = UIImage(named: "Disneyland3")
+     }*/
+    
+    
+   /* func createButton()
+    {
+        let lb1text = UIButton()
+        
+        
+        view.addSubview(lb1text)
+    }
+    */
+   /*
+     Unchecked Button changes to checked button
+    @IBAction func UncheckedButton(_ sender: UIButton) {
+        
+        if sender.isSelected == true    //based on state config being = selected
+        {
+            sender.isSelected = false
+            //now if we add the below statements correspondingly in the if and else what happens
+            lb1text.isHidden = false
+        }
+        else
+        {
+            sender.isSelected = true
+            lb1text.isHidden = true   //=> hides the label that we created in the first place when the button is clicked
+     
+        }
+     
+     The following lines of code also achieve the same purpose-
+     sender.isSelected = !sender.isSelected
+     lb1text.isHidden = sender.isSelected
+     
+     next assignment- change the text of the button but only in the single line as done above
+     hint: Need to use the ternary operator
+     
+     sender.isSelected = !sender.isSelected
+     lb1text.text = sender.isSelected ? "Hello World" : "GoodbyeCruelWorld"
+     // can also use Main.storyboard to do the same by changing up the name of the button with selected property
+     
+     next assignment- set up multiple action button and outlet
+     outside the viewDidLoad - all buttons and the outlet setup using Main.storyboard drag and drop
+     
+     @IBOutlet weak var LabelOutletMultiButton: UILabel!
+     
+     @IBAction func Btn1(_ sender: UIButton) {
+     LabelOutletMultiButton.text = "1"
+     }
+     @IBAction func Btn2(_ sender: UIButton) {
+     LabelOutletMultiButton.text = "2"
+     }
+     @IBAction func Btn3(_ sender: UIButton) {
+     LabelOutletMultiButton.text = "3"
+     }
+     @IBAction func Btn4(_ sender: UIButton) {
+     LabelOutletMultiButton.text = "4"
+     }
+     
+     by clicking the buttons, we change the text of the label every time
+     
+     BUT IN THE REAL WORLD, WE USE A SINGLE BUTTON TO DO MULTIPLE TASKS NOT 1 BUTTON PER TASK AND THEN CREATING MULTIPLE INSTANCES OF IT.. THIS IS SHOWN BELOW
+     
+     @IBAction func MultiActionButton(_ sender: Any) {
+     if sender.tag == 101
+     {
+        LabelOutletMultiButton.text = "1"
+     }
+     else if sender.tag == 102
+     {
+        LabelOutletMultiButton.text = "2"
+     }
+     else if sender.tag == 103
+     {
+        LabelOutletMultiButton.text = "3"
+     }
+     else if sender.tag == 104
+     {
+        LabelOutletMultiButton.text = "4"
+     }
+     //same logic with switch case
+     let x = sender.tag
+     Switch x                               check your switch case syntax
+     {
+     case 101:
+        LabelOutletMultiButton.text = "1"
+     case 102:
+        LabelOutletMultiButton.text = "2"
+     case 103:
+        LabelOutletMultiButton.text = "3"
+     case 104:
+        LabelOutletMultiButton.text = "4"
+     default:
+        LabelOutletMultiButton.text = "NULL"
+        break
+     }
+     
+     }
+     
+     
+     //Creating UISwitch
+     @IBAction func SwitchButtonAction(_ sender: UISwitch) {
+     if sender.isOn
+     {
+        lb1text.text = "ON"
+     }
+     else
+     {
+        lb1text.text = "OFF"
+     }
+     }
+     
+     
+     //Creating UISlider
+     
+     
+     
+     }
+     
+     
+  */
+    
+    
+    @IBOutlet weak var SliderLabel: UILabel!
+    
+    @IBAction func SliderControl(_ sender: UISlider) {
+    
+        sender.isContinuous = false //setting the isContinuous property to false causes the slider send an event only when the user releases the slider’s thumb control, setting the final value.
+        //removing this statement causes the number to change constantly as we move the slider.
+        
+        //SliderLabel.text[NSString .localizedStringWithFormat(<#T##format: NSString##NSString#>, CVarArg)] -> has it changed from swift of previous versions?
+        
+        //SliderLabel.text = [NSString stringwithformat:@"%f", self.SliderControl.value  ] ->is giving error
+        SliderLabel.text = "\(sender.value)"
+
+}
+    
+    //Segmented control sample program
+    @IBOutlet weak var segmentedControlOutlet: UISegmentedControl!
+    
+    @IBOutlet weak var segmentedControllerLabel: UILabel!
+    
+    @IBAction func segmentedControlAction(_ sender: Any) {
+        //called when segmented index is changed by the user
+    switch segmentedControlOutlet.selectedSegmentIndex
+        {
+        case 0:
+            segmentedControllerLabel.text = "First Segment Selected";
+            //break
+        case 1:
+            segmentedControllerLabel.text = "Second Segment Selected";
+            //break
+        //more cases when we have more segments-> modify from Storyboard
+        //case 2:
+        //    segmentedControllerLabel.text = "Third Segment Selected"
+        default:
+            break
+        }
+    }
+    
+    
+    func createLabel()
+    {
+        let label1 = UILabel()//... create it
+        label1.backgroundColor = UIColor.blue
+        label1.frame = CGRect(x: 100, y:250, width: 200, height: 50)
+        //self.view.     no need to use self, feature of swift
+        label1.text = "Hello World"
+        label1.textColor = UIColor.white
+        view.addSubview(label1)
+        
+        
+    }
+
+    override func  viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+}
+
+
+
+
